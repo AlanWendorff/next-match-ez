@@ -3,6 +3,7 @@ import { override, addWebpackAlias } from "customize-cra";
 
 module.exports = override(
   addWebpackAlias({
+    ["@api"]: path.resolve(__dirname, "api"),
     ["@assets"]: path.resolve(__dirname, "public/assets"),
     ["@components"]: path.resolve(__dirname, "components"),
     ["@cards"]: path.resolve(__dirname, "components/cards"),

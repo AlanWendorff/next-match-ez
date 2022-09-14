@@ -1,5 +1,5 @@
 type TLastFiveStyle = {
-  [W: string]: string;
+  [key: string]: string;
 };
 
 export default TLastFiveStyle;
