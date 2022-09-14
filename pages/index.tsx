@@ -22,14 +22,20 @@ const index: NextPage<IProps> = ({
   team_stats,
 }) => {
   const [section, setSection] = useState(ESection.SUMMARY);
-  console.log(historic_matches, upcoming_matches, team_stats);
 
   const handleSection = (section: TSections) => {
     setSection(section);
   };
 
   const SECTIONS = {
-    [ESection.SUMMARY]: <TeamSummary handleSection={handleSection} />,
+    [ESection.SUMMARY]: (
+      <TeamSummary
+        last_match={historic_matches[0]}
+        upcoming_match={upcoming_matches[0]}
+        team_stats={team_stats}
+        handleSection={handleSection}
+      />
+    ),
     [ESection.UPCOMING]: <UpcomingMatches />,
     [ESection.HISTORIC]: <HistoricMatches />,
   };

@@ -2,13 +2,23 @@ import type { NextPage } from "next";
 import Stats from "@cards/stats";
 import MatchSummary from "@cards/match-summary";
 import Roster from "@cards/roster";
-import IProps from "@interfaces/section.props";
+import { ISummaryProps } from "@interfaces/section.props";
 
-const index: NextPage<IProps> = ({ handleSection }) => {
+const index: NextPage<ISummaryProps> = ({
+  last_match,
+  upcoming_match,
+  team_stats,
+  handleSection,
+}) => {
   return (
     <>
       <Stats />
-      <MatchSummary handleSection={handleSection} />
+      <MatchSummary
+        last_match={last_match}
+        upcoming_match={upcoming_match}
+        team_stats={team_stats}
+        handleSection={handleSection}
+      />
       <Roster />
     </>
   );

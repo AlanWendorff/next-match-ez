@@ -1,5 +1,6 @@
 import { TEAM_ID } from "@constants/api";
 import IMatchMapped, { IMatchPandaScore } from "@api/interfaces/match";
+import logo_unknown from "@assets/images/logo-unknown.webp";
 
 export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   let win_strike = 0;
@@ -60,16 +61,16 @@ export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
       serie_name: serie.full_name,
       winner_id: winner ? winner.id : null,
       opponents: [
-        opponents[0] !== undefined && {
+        opponents[0].opponent.id && {
           id: opponents[0].opponent.id,
           name: opponents[0].opponent.name,
-          image_url: opponents[0].opponent.image_url,
+          image_url: opponents[0].opponent.image_url ?? logo_unknown,
         },
 
-        opponents[1] !== undefined && {
+        opponents[1].opponent.id && {
           id: opponents[1].opponent.id,
           name: opponents[1].opponent.name,
-          image_url: opponents[1].opponent.image_url,
+          image_url: opponents[1].opponent.image_url ?? logo_unknown,
         },
       ],
       results: results,

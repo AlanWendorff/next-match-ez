@@ -4,11 +4,7 @@ import { getCountryFlag, getCountryName } from "@services/country.api";
 import { PLAYERS } from "data/roster";
 import styles from "./roster.module.scss";
 
-interface IProps {
-  roster: any[];
-}
-
-const index: NextPage<IProps> = ({ roster }) => {
+const index: NextPage = () => {
   return (
     <div className={styles.container}>
       <h1>Roster of 9z</h1>

@@ -8,7 +8,7 @@ interface IMatchMapped {
   serie_name: string;
   winner_id: number | null;
   opponents: (
-    | false
+    | undefined
     | {
         id: number;
         name: string;
