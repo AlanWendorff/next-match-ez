@@ -19,13 +19,7 @@ interface IMatchMapped {
   official_stream_url: string | null;
 }
 
-type TOpponents = {
-  id: number;
-  name: string;
-  image_url: string;
-};
-
-export interface IMatchApi {
+export interface IMatchPandaScore {
   slug: string;
   modified_at: Date;
   winner_id: number;
@@ -57,7 +51,7 @@ export interface IMatchApi {
   begin_at: Date;
   live_embed_url: string;
   draw: boolean;
-  winner: ITeamClass;
+  winner: ITeamClass | null;
   forfeit: boolean;
   streams: IStreams;
   opponents: IOpponent[];

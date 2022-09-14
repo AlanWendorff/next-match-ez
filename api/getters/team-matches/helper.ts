@@ -1,5 +1,5 @@
 import { TEAM_ID } from "@constants/api";
-import IMatchMapped, { IMatchApi } from "@api/interfaces/match";
+import IMatchMapped, { IMatchPandaScore } from "@api/interfaces/match";
 
 export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   let win_strike = 0;
@@ -29,7 +29,7 @@ export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   };
 };
 
-export const matchesMapper = (MATCHES: IMatchApi[]) =>
+export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
   MATCHES.map((MATCH) => {
     const {
       id,
@@ -58,7 +58,7 @@ export const matchesMapper = (MATCHES: IMatchApi[]) =>
       number_of_games: number_of_games,
       league_name: league.name,
       serie_name: serie.full_name,
-      winner_id: winner.id,
+      winner_id: winner ? winner.id : null,
       opponents: [
         opponents[0] !== undefined && {
           id: opponents[0].opponent.id,
