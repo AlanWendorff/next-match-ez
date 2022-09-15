@@ -2,7 +2,39 @@
 @use "../../../styles/fonts.scss" as fonts;
 @use "../../../styles/colors.scss" as colors;
 
-.container {
+.containerUpcoming {
+  @include mixins.flex_container(row, space-between, center);
+  min-height: 17rem;
+  width: 100%;
+  background-color: colors.$brand-ice;
+  border-radius: 1.25rem;
+  margin: 1rem 0;
+  padding: 1rem 1.5rem;
+
+  .team {
+    @include mixins.flex_container(row, center, center);
+    width: 190px;
+    margin: 0.5rem;
+  }
+
+  .matchDetail {
+    @include mixins.flex_container(column, space-evenly, flex-start);
+    width: 320px;
+    padding-top: 0.5rem;
+
+    p {
+      @include mixins.flex_container(row, flex-start, center);
+      margin-bottom: 1rem;
+
+      svg {
+        color: colors.$team-violet-dark;
+        margin-right: 0.625rem;
+      }
+    }
+  }
+}
+
+.containerLive {
   @include mixins.flex_container(column, space-between, center);
   min-height: 17rem;
   width: 100%;
@@ -15,21 +47,13 @@
     @include mixins.flex_container(column, space-between, center);
     height: 13.5rem;
     width: 100%;
+    margin-bottom: 1rem;
 
     .team {
       @include mixins.flex_container(row, space-between, center);
       width: 100%;
       margin: 0.5rem;
     }
-
-    .lost {
-      opacity: 0.3;
-    }
-  }
-
-  .arrow {
-    width: 100%;
-    margin-top: 1rem;
   }
 
   .matchDetail {

@@ -1,6 +1,26 @@
 import { TEAM_ID } from "@constants/api";
-import IMatchMapped, { IMatchPandaScore } from "@api/interfaces/match";
+import IMatchMapped, {
+  IMatchPandaScore,
+  TOpponent,
+} from "@api/interfaces/match";
 import logo_unknown from "@assets/images/logo-unknown.webp";
+import logo_team_to_be_defined from "@assets/images/team-tbd.webp";
+
+const opponentValidate = (opponent: TOpponent) => {
+  if (!opponent) {
+    return {
+      id: 0,
+      name: "To be defined",
+      image_url: logo_team_to_be_defined.src,
+    };
+  }
+
+  return {
+    id: opponent.id,
+    name: opponent.name,
+    image_url: opponent.image_url ?? logo_unknown.src,
+  };
+};
 
 export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   let win_strike = 0;
@@ -54,24 +74,16 @@ export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
     return {
       id: id,
       begin_at: begin_at,
-      status: status,
+      isLive: status === "running" ? true : false,
       stage: STAGE,
       number_of_games: number_of_games,
       league_name: league.name,
       serie_name: serie.full_name,
       winner_id: winner ? winner.id : null,
       opponents: [
-        opponents[0].opponent.id && {
-          id: opponents[0].opponent.id,
-          name: opponents[0].opponent.name,
-          image_url: opponents[0].opponent.image_url ?? logo_unknown,
-        },
+        opponentValidate(opponents[0].opponent),
 
-        opponents[1].opponent.id && {
-          id: opponents[1].opponent.id,
-          name: opponents[1].opponent.name,
-          image_url: opponents[1].opponent.image_url ?? logo_unknown,
-        },
+        opponentValidate(opponents[1].opponent),
       ],
       results: results,
       official_stream_url: official_stream_url,

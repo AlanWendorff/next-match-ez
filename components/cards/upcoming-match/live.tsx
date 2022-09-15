@@ -1,4 +1,3 @@
-import { useState } from "react";
 import type { NextPage } from "next";
 import Moment from "moment";
 import TeamLogo from "../../team-logo";
@@ -7,14 +6,12 @@ import { isMatchFinal } from "@utils/tournament.validate";
 import { resultValidator } from "@utils/team.validate";
 import { ETeamComponentMode } from "@constants/enums";
 import IProps from "interfaces/match.props";
-import ChevronDownIcon from "mdi-react/ChevronDownIcon";
-import ChevronUpIcon from "mdi-react/ChevronUpIcon";
 import TrophyOutlineIcon from "mdi-react/TrophyOutlineIcon";
 import CalendarClockIcon from "mdi-react/CalendarClockIcon";
-import styles from "./historic-match.module.scss";
+import TwitchIcon from "mdi-react/TwitchIcon";
+import styles from "./match-card.module.scss";
 
 const index: NextPage<IProps> = ({ match }) => {
-  const [detailState, setDetailState] = useState(false);
   const {
     opponents,
     results,
@@ -23,17 +20,14 @@ const index: NextPage<IProps> = ({ match }) => {
     serie_name,
     begin_at,
     stage,
+    official_stream_url,
   } = match;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerLive}>
       <div className={styles.match}>
         <p className={isMatchFinal(stage)}>{stage}</p>
-        <div
-          className={`${styles.team} ${
-            results[0].score < results[1].score ? styles.lost : ""
-          }`}
-        >
+        <div className={styles.team}>
           <TeamLogo
             componentMode={ETeamComponentMode.ROW}
             teamLogo={`${opponents[0].image_url}`}
@@ -43,11 +37,7 @@ const index: NextPage<IProps> = ({ match }) => {
             {results[0].score}
           </p>
         </div>
-        <div
-          className={`${styles.team} ${
-            results[1].score < results[0].score ? styles.lost : ""
-          }`}
-        >
+        <div className={styles.team}>
           <TeamLogo
             componentMode={ETeamComponentMode.ROW}
             teamLogo={`${opponents[1].image_url}`}
@@ -59,30 +49,32 @@ const index: NextPage<IProps> = ({ match }) => {
         </div>
         <p>Best of {number_of_games}</p>
       </div>
-      <button
-        className={styles.arrow}
-        onClick={() => setDetailState(!detailState)}
-      >
-        {detailState ? (
-          <ChevronUpIcon size={"30px"} />
-        ) : (
-          <ChevronDownIcon size={"30px"} />
-        )}
-      </button>
-      {detailState && (
-        <div className={styles.matchDetail}>
-          <p>
-            <TrophyOutlineIcon size={"20px"} />
-            {`${league_name} ${serie_name}`}
-          </p>
-          <p>
-            <CalendarClockIcon size={"20px"} />
-            {Moment(begin_at).format("Do")}{" "}
-            {Moment(begin_at).format("MMMM - H:mm")} hs
-          </p>
-          <SocialShare />
-        </div>
-      )}
+      <div className={styles.matchDetail}>
+        <p>
+          <TrophyOutlineIcon size={"20px"} />
+          {`${league_name} ${serie_name}`}
+        </p>
+        <p>
+          <CalendarClockIcon size={"20px"} />
+          {Moment(begin_at).format("Do")}{" "}
+          {Moment(begin_at).format("MMMM - H:mm")} hs
+        </p>
+        <p>
+          <TwitchIcon size={"20px"} />
+          {official_stream_url ? (
+            <a
+              href={official_stream_url}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {official_stream_url}
+            </a>
+          ) : (
+            <>No stream available :'( </>
+          )}
+        </p>
+        <SocialShare />
+      </div>
     </div>
   );
 };

@@ -36,8 +36,10 @@ const index: NextPage<IProps> = ({
         handleSection={handleSection}
       />
     ),
-    [ESection.UPCOMING]: <UpcomingMatches />,
-    [ESection.HISTORIC]: <HistoricMatches />,
+    [ESection.UPCOMING]: <UpcomingMatches upcoming_match={upcoming_matches} />,
+    [ESection.HISTORIC]: (
+      <HistoricMatches historic_matches={historic_matches} />
+    ),
   };
 
   return (

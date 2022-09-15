@@ -3,33 +3,37 @@ import Moment from "moment";
 import TeamLogo from "../../team-logo";
 import SocialShare from "../../social-share";
 import { ETeamComponentMode } from "@constants/enums";
+import IProps from "interfaces/match.props";
 import TrophyOutlineIcon from "mdi-react/TrophyOutlineIcon";
 import FormatListGroupIcon from "mdi-react/FormatListGroupIcon";
 import CalendarClockIcon from "mdi-react/CalendarClockIcon";
 import TrophyAwardIcon from "mdi-react/TrophyAwardIcon";
-import styles from "./upcoming-match.module.scss";
-
-interface IProps {
-  match: any;
-}
+import styles from "./match-card.module.scss";
 
 const index: NextPage<IProps> = ({ match }) => {
-  const { opponents, bestOf, league, serie, begin_at, stage } = match;
+  const {
+    opponents,
+    number_of_games,
+    league_name,
+    serie_name,
+    begin_at,
+    stage,
+  } = match;
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerUpcoming}>
       <div className={styles.team}>
         <TeamLogo
           componentMode={ETeamComponentMode.COLUMN}
-          teamLogo={opponents[1].opponent.image_url}
-          teamName={opponents[1].opponent.name}
+          teamLogo={`${opponents[0].image_url}`}
+          teamName={opponents[0].name}
           big
         />
       </div>
       <div className={styles.matchDetail}>
         <p>
           <TrophyOutlineIcon size={"20px"} />
-          {`${league.name} ${serie.full_name}`}
+          {`${league_name} ${serie_name}`}
         </p>
         <p>
           <FormatListGroupIcon size={"20px"} />
@@ -42,7 +46,7 @@ const index: NextPage<IProps> = ({ match }) => {
         </p>
         <p>
           <TrophyAwardIcon size={"20px"} />
-          {bestOf}
+          Best of {number_of_games}
         </p>
         <SocialShare distanceOfSocials={120} />
       </div>

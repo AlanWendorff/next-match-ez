@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { LAST_FIVE_GAMES } from "dummy-data";
+import { TStats } from "types/api";
 import TLastFiveStyle from "types/stats";
 import styles from "./stats.module.scss";
 
@@ -8,26 +8,28 @@ const lastFiveStyle: TLastFiveStyle = {
   L: styles.lostGame,
 };
 
-const index: NextPage = () => {
-  return (
-    <div className={styles.container}>
-      <section className={styles.generalStats}>
-        <p>
-          Winrate: <span>70.00%</span>
-        </p>
-        <p>
-          Winstrike: <span>0</span>
-        </p>
-      </section>
-      <section className={styles.lastFive} title="Last 5 games">
-        {LAST_FIVE_GAMES.map((status, index) => (
-          <span key={index} className={lastFiveStyle[status]}>
-            {status}
-          </span>
-        ))}
-      </section>
-    </div>
-  );
-};
+interface IProps {
+  team_stats: TStats;
+}
+
+const index: NextPage<IProps> = ({ team_stats }) => (
+  <div className={styles.container}>
+    <section className={styles.generalStats}>
+      <p>
+        Winrate: <span>{team_stats.win_rate}%</span>
+      </p>
+      <p>
+        Winstrike: <span>{team_stats.win_strike}</span>
+      </p>
+    </section>
+    <section className={styles.lastFive} title="Last 5 games">
+      {team_stats.last_five_games.map((status, index) => (
+        <span key={index} className={lastFiveStyle[status]}>
+          {status}
+        </span>
+      ))}
+    </section>
+  </div>
+);
 
 export default index;

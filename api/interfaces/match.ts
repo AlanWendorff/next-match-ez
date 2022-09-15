@@ -1,23 +1,22 @@
 interface IMatchMapped {
   id: number;
   begin_at: Date;
-  status: string;
+  isLive: boolean;
   stage: string;
   number_of_games: number;
   league_name: string;
   serie_name: string;
   winner_id: number | null;
-  opponents: (
-    | undefined
-    | {
-        id: number;
-        name: string;
-        image_url: string;
-      }
-  )[];
+  opponents: TOpponent[];
   results: IResult[];
   official_stream_url: string | null;
 }
+
+export type TOpponent = {
+  id: number;
+  name: string;
+  image_url: string;
+};
 
 export interface IMatchPandaScore {
   slug: string;
