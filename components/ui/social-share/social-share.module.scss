@@ -1,6 +1,6 @@
-@use "../../styles/mixins.scss" as mixins;
-@use "../../styles/fonts.scss" as fonts;
-@use "../../styles/colors.scss" as colors;
+@use "../../../styles/mixins.scss" as mixins;
+@use "../../../styles/fonts.scss" as fonts;
+@use "../../../styles/colors.scss" as colors;
 
 .container {
   @include mixins.flex_container(column, space-between, center);

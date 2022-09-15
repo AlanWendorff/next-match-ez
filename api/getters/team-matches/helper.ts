@@ -50,6 +50,29 @@ export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   };
 };
 
+/* export const playingStage = (results) => {
+  let mapPlaying;
+  if (results[0].score === 0 && results[1].score === 0) {
+    mapPlaying = " - Playing 1st map";
+  } else if (
+    (results[0].score === 1 && results[1].score === 0) ||
+    (results[0].score === 0 && results[1].score === 1)
+  ) {
+    mapPlaying = " - Playing 2th map";
+  } else {
+    mapPlaying = " - Playing 3th map";
+  }
+  if (
+    (results[0].score === 2 && results[1].score === 1) ||
+    (results[0].score === 1 && results[1].score === 2)
+  ) {
+    mapPlaying = " - Playing 4th map";
+  } else if (results[0].score === 2 && results[1].score === 2) {
+    mapPlaying = " - Playing 5th map";
+  }
+  return mapPlaying;
+}; */
+
 export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
   MATCHES.map((MATCH) => {
     const {

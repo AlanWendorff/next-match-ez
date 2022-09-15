@@ -1,8 +1,9 @@
 import type { NextPage } from "next";
 import Moment from "moment";
 import TeamLogo from "../../team-logo";
-import SocialShare from "../../social-share";
+import SocialShare from "../../ui/social-share";
 import { isMatchFinal } from "@utils/tournament.validate";
+import { createLiveMsg } from "@utils/social-share";
 import { resultValidator } from "@utils/team.validate";
 import { ETeamComponentMode } from "@constants/enums";
 import IProps from "interfaces/match.props";
@@ -70,10 +71,19 @@ const index: NextPage<IProps> = ({ match }) => {
               {official_stream_url}
             </a>
           ) : (
-            <>No stream available :'( </>
+            <>Stream not available :'( </>
           )}
         </p>
-        <SocialShare />
+        <SocialShare
+          msg={createLiveMsg(
+            opponents,
+            results,
+            number_of_games,
+            league_name,
+            official_stream_url,
+            stage
+          )}
+        />
       </div>
     </div>
   );

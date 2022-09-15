@@ -18,10 +18,12 @@ const SOCIAL_STATES = {
 
 interface IProps {
   distanceOfSocials?: number;
+  msg: string;
 }
 
-const index: NextPage<IProps> = ({ distanceOfSocials }) => {
+const index: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
   const [showSocials, setShowSocials] = useState(false);
+  console.log(msg);
 
   return (
     <div className={styles.container}>
@@ -37,22 +39,24 @@ const index: NextPage<IProps> = ({ distanceOfSocials }) => {
         style={{ transform: `translate(-${distanceOfSocials ?? 200}%, -75%)` }}
       >
         <FacebookShareButton
-          url={`${window.location.href}`}
+          url={window.location.href}
           hashtag="#csgo"
-          /* quote={Facebook} */
+          quote={msg}
           className={styles.BTN3}
         >
           <FacebookIcon size={32} round={true} />
         </FacebookShareButton>
 
         <TwitterShareButton
-          url={`${window.location.href}`} /* title={Twitter} */
+          url={window.location.href}
+          hashtags={["csgo"]}
+          title={msg}
           className={styles.BTN2}
         >
           <TwitterIcon size={32} round={true} />
         </TwitterShareButton>
 
-        <WhatsappShareButton url="" /* url={Wapp} */ className={styles.BTN1}>
+        <WhatsappShareButton url={msg} className={styles.BTN1}>
           <WhatsappIcon size={32} round={true} />
         </WhatsappShareButton>
       </div>

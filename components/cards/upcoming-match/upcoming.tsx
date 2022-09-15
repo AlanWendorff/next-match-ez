@@ -1,7 +1,8 @@
 import type { NextPage } from "next";
 import Moment from "moment";
 import TeamLogo from "../../team-logo";
-import SocialShare from "../../social-share";
+import SocialShare from "../../ui/social-share";
+import { createUpcomingMsg } from "@utils/social-share";
 import { ETeamComponentMode } from "@constants/enums";
 import IProps from "interfaces/match.props";
 import TrophyOutlineIcon from "mdi-react/TrophyOutlineIcon";
@@ -48,7 +49,16 @@ const index: NextPage<IProps> = ({ match }) => {
           <TrophyAwardIcon size={"20px"} />
           Best of {number_of_games}
         </p>
-        <SocialShare distanceOfSocials={120} />
+        <SocialShare
+          distanceOfSocials={120}
+          msg={createUpcomingMsg(
+            opponents,
+            number_of_games,
+            begin_at,
+            league_name,
+            serie_name
+          )}
+        />
       </div>
     </div>
   );

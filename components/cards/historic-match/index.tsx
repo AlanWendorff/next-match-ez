@@ -2,7 +2,8 @@ import { useState } from "react";
 import type { NextPage } from "next";
 import Moment from "moment";
 import TeamLogo from "../../team-logo";
-import SocialShare from "../../social-share";
+import SocialShare from "../../ui/social-share";
+import { createHistoricMsg } from "@utils/social-share";
 import { isMatchFinal } from "@utils/tournament.validate";
 import { resultValidator } from "@utils/team.validate";
 import { ETeamComponentMode } from "@constants/enums";
@@ -80,7 +81,9 @@ const index: NextPage<IProps> = ({ match }) => {
             {Moment(begin_at).format("Do")}{" "}
             {Moment(begin_at).format("MMMM - H:mm")} hs
           </p>
-          <SocialShare />
+          <SocialShare
+            msg={createHistoricMsg(opponents, results, league_name, serie_name)}
+          />
         </div>
       )}
     </div>

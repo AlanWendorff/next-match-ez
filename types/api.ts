@@ -7,16 +7,20 @@ export type TMatch = {
   league_name: string;
   serie_name: string;
   winner_id: number | null;
-  opponents: {
-    id: number;
-    name: string;
-    image_url: string;
-  }[];
-  results: {
-    score: number;
-    team_id: number;
-  }[];
+  opponents: TOpponent[];
+  results: TResults[];
   official_stream_url: string | null;
+};
+
+export type TOpponent = {
+  id: number;
+  name: string;
+  image_url: string;
+};
+
+export type TResults = {
+  score: number;
+  team_id: number;
 };
 
 export type TStats = {
