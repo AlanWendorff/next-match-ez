@@ -93,7 +93,7 @@ interface ILive {
   url: null;
 }
 
-interface IOpponent {
+export interface IOpponent {
   opponent: ITeamClass;
   type: string;
 }

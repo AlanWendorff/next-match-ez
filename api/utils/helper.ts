@@ -1,13 +1,13 @@
 import { TEAM_ID } from "@constants/api";
 import IMatchMapped, {
   IMatchPandaScore,
-  TOpponent,
+  IOpponent,
 } from "@api/interfaces/match";
 import logo_unknown from "@assets/images/logo-unknown.webp";
 import logo_team_to_be_defined from "@assets/images/team-tbd.webp";
 
-const opponentValidate = (opponent: TOpponent) => {
-  if (!opponent) {
+const opponentValidate = (opponents: IOpponent) => {
+  if (!opponents) {
     return {
       id: 0,
       name: "To be defined",
@@ -16,9 +16,9 @@ const opponentValidate = (opponent: TOpponent) => {
   }
 
   return {
-    id: opponent.id,
-    name: opponent.name,
-    image_url: opponent.image_url ?? logo_unknown.src,
+    id: opponents.opponent.id,
+    name: opponents.opponent.name,
+    image_url: opponents.opponent.image_url ?? logo_unknown.src,
   };
 };
 
@@ -50,6 +50,48 @@ export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   };
 };
 
+export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
+  MATCHES.map((MATCH) => {
+    const {
+      id,
+      begin_at,
+      number_of_games,
+      name,
+      tournament,
+      status,
+      league,
+      serie,
+      opponents,
+      results,
+      official_stream_url,
+      winner,
+    } = MATCH;
+
+    const STAGE = name.includes(":")
+      ? name.substring(0, name.lastIndexOf(":"))
+      : tournament.name;
+
+    console.log(opponents);
+
+    return {
+      id: id,
+      begin_at: begin_at,
+      isLive: status === "running" ? true : false,
+      stage: STAGE,
+      number_of_games: number_of_games,
+      league_name: league.name,
+      serie_name: serie.full_name,
+      winner_id: winner ? winner.id : null,
+      opponents: [
+        opponentValidate(opponents[0]),
+
+        opponentValidate(opponents[1]),
+      ],
+      results: results,
+      official_stream_url: official_stream_url,
+    };
+  });
+
 /* export const playingStage = (results) => {
   let mapPlaying;
   if (results[0].score === 0 && results[1].score === 0) {
@@ -72,43 +114,3 @@ export const makeStatistics = (HISTORIC_MATCHES: IMatchMapped[]) => {
   }
   return mapPlaying;
 }; */
-
-export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
-  MATCHES.map((MATCH) => {
-    const {
-      id,
-      begin_at,
-      number_of_games,
-      name,
-      tournament,
-      status,
-      league,
-      serie,
-      opponents,
-      results,
-      official_stream_url,
-      winner,
-    } = MATCH;
-
-    const STAGE = name.includes(":")
-      ? name.substring(0, name.lastIndexOf(":"))
-      : tournament.name;
-
-    return {
-      id: id,
-      begin_at: begin_at,
-      isLive: status === "running" ? true : false,
-      stage: STAGE,
-      number_of_games: number_of_games,
-      league_name: league.name,
-      serie_name: serie.full_name,
-      winner_id: winner ? winner.id : null,
-      opponents: [
-        opponentValidate(opponents[0].opponent),
-
-        opponentValidate(opponents[1].opponent),
-      ],
-      results: results,
-      official_stream_url: official_stream_url,
-    };
-  });

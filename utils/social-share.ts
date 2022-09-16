@@ -9,7 +9,7 @@ export const createHistoricMsg = (
 ) =>
   `${opponents[0].name}: ${results[0].score} VS ${opponents[1].name}: ${
     results[1].score
-  } |  ${league_name + " " + serie_name} -> ${window.location.href}`;
+  } |  ${league_name + " " + serie_name} -> https://next-match-ez.vercel.app/`;
 
 export const createUpcomingMsg = (
   opponents: TOpponent[],
@@ -22,9 +22,9 @@ export const createUpcomingMsg = (
     opponents[1].name
   } | Best of ${number_of_games} | ${Moment(begin_at).format("Do")} ${Moment(
     begin_at
-  ).format("MMMM - H:mm")} hs | ${league_name + " " + serie_name} -> ${
-    window.location.href
-  }`;
+  ).format("MMMM - H:mm")} hs | ${
+    league_name + " " + serie_name
+  } -> https://next-match-ez.vercel.app/`;
 
 export const createLiveMsg = (
   opponents: TOpponent[],

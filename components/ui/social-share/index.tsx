@@ -38,7 +38,7 @@ const index: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
         style={{ transform: `translate(-${distanceOfSocials ?? 200}%, -75%)` }}
       >
         <FacebookShareButton
-          url={window.location.href}
+          url={"https://next-match-ez.vercel.app/"}
           hashtag="#csgo"
           quote={msg}
           className={styles.BTN3}
@@ -47,7 +47,7 @@ const index: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
         </FacebookShareButton>
 
         <TwitterShareButton
-          url={window.location.href}
+          url={"https://next-match-ez.vercel.app/"}
           hashtags={["csgo"]}
           title={msg}
           className={styles.BTN2}

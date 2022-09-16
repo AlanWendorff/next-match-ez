@@ -1,5 +1,5 @@
 import { TEAM_ID, API_KEY } from "@constants/api";
-import { matchesMapper, makeStatistics } from "./helper";
+import { matchesMapper, makeStatistics } from "../../utils/helper";
 import IMatchMapped from "@api/interfaces/match";
 
 const getTeamMatches = async () => {

@@ -7,7 +7,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => (
   <>
     <Web />
     <Component {...pageProps} />
-    {/*  <NavBar /> */}
+    <NavBar />
   </>
 );
 

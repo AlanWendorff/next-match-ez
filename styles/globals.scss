@@ -21,13 +21,13 @@ body {
 #__next {
   @include mixins.flex_container(column, flex-start, center);
   width: var.$web-width;
-  padding-bottom: 1rem;
+  padding-bottom: 6.5rem;
   font-family: fonts.$gilroy-light;
 
   @include responsives.MOBILE {
     width: 100%;
     padding: 0 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 6.5rem;
   }
 }
 
