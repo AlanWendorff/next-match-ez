@@ -43,7 +43,7 @@ const index: NextPage = () => {
                 />
               </div>
 
-              <p className={styles.playerName}>
+              <div className={styles.playerName}>
                 <Image
                   src={getCountryFlag(nationality)}
                   width={24}
@@ -53,13 +53,15 @@ const index: NextPage = () => {
                   loading="lazy"
                 />
                 <span>"{name}"</span>
+              </div>
+
+              <p className={styles.playerFullName}>
+                <span>{first_name}</span>
+                <span className={styles.space}>&nbsp;</span>
+                <span>{last_name}</span>
               </p>
 
-              <p>
-                {first_name} {last_name}
-              </p>
-
-              {isBenched && <p className={styles.benchedTxt}>Benched</p>}
+              {isBenched && <p className={styles.benchedTxt}>(Benched)</p>}
             </div>
           )
         )}

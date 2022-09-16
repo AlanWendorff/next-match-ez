@@ -1,6 +1,7 @@
 @use "../../../styles/mixins.scss" as mixins;
 @use "../../../styles/fonts.scss" as fonts;
 @use "../../../styles/colors.scss" as colors;
+@use "../../../styles/responsives.scss" as responsives;
 
 .container {
   @include mixins.flex_container(column, flex-start, center);
@@ -13,6 +14,10 @@
 
   h1 {
     margin: 2rem 0 1.5rem 0;
+
+    @include responsives.MOBILE {
+      font-size: 1.7rem;
+    }
   }
 
   .roster {
@@ -34,10 +39,19 @@
       margin: 0.5rem;
       padding: 0.625rem 0;
 
+      @include responsives.MOBILE {
+        height: auto;
+        width: 10rem;
+      }
+
       .imageContainer {
         @include mixins.flex_container(row, center, center);
         width: 100%;
         position: relative;
+
+        @include responsives.MOBILE {
+          height: 120px;
+        }
 
         .backgroundLogo {
           position: absolute;
@@ -45,6 +59,13 @@
           -webkit-filter: blur(0.125rem);
           filter: blur(0.125rem);
           z-index: 0;
+
+          @include responsives.MOBILE {
+            min-width: auto !important;
+            min-height: auto !important;
+            height: 120px !important;
+            width: 120px !important;
+          }
         }
 
         .playerImage {
@@ -66,9 +87,27 @@
         }
       }
 
+      .playerFullName {
+        @include mixins.flex_container(row, center, center);
+
+        @include responsives.MOBILE {
+          @include mixins.flex_container(column, center, center);
+        }
+
+        .space {
+          @include responsives.MOBILE {
+            display: none;
+          }
+        }
+      }
+
       .benchedTxt {
         font-family: fonts.$gilroy-extra-bold;
         margin-top: 0.5rem;
+
+        @include responsives.MOBILE {
+          margin-bottom: -0.5rem;
+        }
       }
     }
   }

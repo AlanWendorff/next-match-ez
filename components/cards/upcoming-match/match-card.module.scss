@@ -1,6 +1,7 @@
 @use "../../../styles/mixins.scss" as mixins;
 @use "../../../styles/fonts.scss" as fonts;
 @use "../../../styles/colors.scss" as colors;
+@use "../../../styles/responsives.scss" as responsives;
 
 .containerUpcoming {
   @include mixins.flex_container(row, space-between, center);
@@ -11,16 +12,35 @@
   margin: 1rem 0;
   padding: 1rem 1.5rem;
 
+  @include responsives.MOBILE {
+    @include mixins.flex_container(column, space-between, center);
+    min-height: 12rem;
+  }
+
   .team {
     @include mixins.flex_container(row, center, center);
-    width: 190px;
+    width: 11.875rem;
     margin: 0.5rem;
+
+    img {
+      @include responsives.MOBILE {
+        min-width: auto !important;
+        min-height: auto !important;
+        width: 100px !important;
+        height: 100px !important;
+      }
+    }
   }
 
   .matchDetail {
     @include mixins.flex_container(column, space-evenly, flex-start);
-    width: 320px;
+    width: 20rem;
     padding-top: 0.5rem;
+    text-align: start;
+
+    @include responsives.MOBILE {
+      width: 100%;
+    }
 
     p {
       @include mixins.flex_container(row, flex-start, center);

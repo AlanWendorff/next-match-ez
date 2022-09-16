@@ -10,7 +10,7 @@
   border-radius: 1.25rem;
   overflow: hidden;
   margin: 1rem 0;
-  font-family: fonts.$gilroy-extra-bold;
+  font-family: fonts.$gilroy-light;
 
   .lostGame {
     color: maroon;
@@ -31,7 +31,11 @@
 
   .generalStats,
   .lastFive {
-    width: 100%;
     @include mixins.flex_container(row, space-evenly, center);
+    width: 100%;
+  }
+
+  .lastFive {
+    font-family: fonts.$gilroy-extra-bold;
   }
 }
