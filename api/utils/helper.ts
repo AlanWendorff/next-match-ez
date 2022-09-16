@@ -71,8 +71,6 @@ export const matchesMapper = (MATCHES: IMatchPandaScore[]) =>
       ? name.substring(0, name.lastIndexOf(":"))
       : tournament.name;
 
-    console.log(opponents);
-
     return {
       id: id,
       begin_at: begin_at,

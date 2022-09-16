@@ -9,7 +9,7 @@ import {
   TwitterIcon,
   WhatsappIcon,
 } from "react-share";
-import styles from "./social-share.module.scss";
+import styles from "./SocialShare.module.scss";
 
 const SOCIAL_STATES = {
   true: styles.social,
@@ -21,7 +21,7 @@ interface IProps {
   msg: string;
 }
 
-const index: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
+const SocialShare: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
   const [showSocials, setShowSocials] = useState(false);
 
   return (
@@ -63,4 +63,4 @@ const index: NextPage<IProps> = ({ distanceOfSocials, msg }) => {
   );
 };
 
-export default index;
+export default SocialShare;

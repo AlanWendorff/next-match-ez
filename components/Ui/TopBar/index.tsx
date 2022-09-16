@@ -4,9 +4,9 @@ import { ESection } from "@constants/enums";
 import IProps from "@interfaces/section.props";
 import HistoryIcon from "mdi-react/HistoryIcon";
 import MAIN_LOGO from "@assets/images/9z-logo.webp";
-import styles from "./top-bar.module.scss";
+import styles from "./TopBar.module.scss";
 
-const index: NextPage<IProps> = ({ section, handleSection }) => {
+const TopBar: NextPage<IProps> = ({ section, handleSection }) => {
   return (
     <div className={styles.container}>
       <button
@@ -15,7 +15,13 @@ const index: NextPage<IProps> = ({ section, handleSection }) => {
           handleSection(ESection.SUMMARY);
         }}
       >
-        <Image src={MAIN_LOGO} width={30} height={30} placeholder="blur" />
+        <Image
+          src={MAIN_LOGO}
+          width={30}
+          height={30}
+          placeholder="blur"
+          alt="main logo"
+        />
       </button>
       <button
         className={section === ESection.UPCOMING ? styles.on : ""}
@@ -37,4 +43,4 @@ const index: NextPage<IProps> = ({ section, handleSection }) => {
   );
 };
 
-export default index;
+export default TopBar;

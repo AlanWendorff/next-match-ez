@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
-import Stats from "@cards/stats";
-import MatchSummary from "@cards/match-summary";
-import Roster from "@cards/roster";
+import Stats from "@components/Cards/Stats";
+import MatchSummary from "@components/Cards/MatchSummary";
+import Roster from "@components/Cards/Roster";
 import { TMatch, TStats } from "types/api";
 import { IHandleSelection } from "@interfaces/section.props";
 
@@ -11,7 +11,7 @@ interface IProps extends IHandleSelection {
   team_stats: TStats;
 }
 
-const index: NextPage<IProps> = ({
+const TeamSummary: NextPage<IProps> = ({
   last_match,
   upcoming_match,
   team_stats,
@@ -30,4 +30,4 @@ const index: NextPage<IProps> = ({
   );
 };
 
-export default index;
+export default TeamSummary;

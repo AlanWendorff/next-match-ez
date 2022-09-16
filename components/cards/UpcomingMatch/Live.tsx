@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Moment from "moment";
-import TeamLogo from "../../team-logo";
-import SocialShare from "../../ui/social-share";
+import TeamLogo from "../../TeamLogo";
+import SocialShare from "../../Ui/SocialShare";
 import { isMatchFinal } from "@utils/tournament.validate";
 import { createLiveMsg } from "@utils/social-share";
 import { resultValidator } from "@utils/team.validate";
@@ -10,10 +10,11 @@ import IProps from "interfaces/match.props";
 import TrophyOutlineIcon from "mdi-react/TrophyOutlineIcon";
 import CalendarClockIcon from "mdi-react/CalendarClockIcon";
 import TwitchIcon from "mdi-react/TwitchIcon";
-import styles from "./match-card.module.scss";
+import styles from "./Match.module.scss";
 
-const index: NextPage<IProps> = ({ match }) => {
+const Live: NextPage<IProps> = ({ match }) => {
   const {
+    isLive,
     opponents,
     results,
     number_of_games,
@@ -34,9 +35,11 @@ const index: NextPage<IProps> = ({ match }) => {
             teamLogo={`${opponents[0].image_url}`}
             teamName={opponents[0].name}
           />
-          <p className={resultValidator(results[0].score, results[1].score)}>
-            {results[0].score}
-          </p>
+          {isLive && (
+            <p className={resultValidator(results[0].score, results[1].score)}>
+              {results[0].score}
+            </p>
+          )}
         </div>
         <div className={styles.team}>
           <TeamLogo
@@ -44,9 +47,11 @@ const index: NextPage<IProps> = ({ match }) => {
             teamLogo={`${opponents[1].image_url}`}
             teamName={opponents[1].name}
           />
-          <p className={resultValidator(results[1].score, results[0].score)}>
-            {results[1].score}
-          </p>
+          {isLive && (
+            <p className={resultValidator(results[1].score, results[0].score)}>
+              {results[1].score}
+            </p>
+          )}
         </div>
         <p>Best of {number_of_games}</p>
       </div>
@@ -60,22 +65,27 @@ const index: NextPage<IProps> = ({ match }) => {
           {Moment(begin_at).format("Do")}{" "}
           {Moment(begin_at).format("MMMM - H:mm")} hs
         </p>
-        <p>
-          <TwitchIcon size={"20px"} />
-          {official_stream_url ? (
-            <a
-              href={official_stream_url}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {official_stream_url}
-            </a>
-          ) : (
-            <>Stream not available :'( </>
-          )}
-        </p>
+        {isLive && (
+          <p>
+            <TwitchIcon size={"20px"} />
+            {official_stream_url ? (
+              <a
+                href={official_stream_url}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {official_stream_url}
+              </a>
+            ) : (
+              <>{"Stream not available :'("} </>
+            )}
+          </p>
+        )}
         <SocialShare
           msg={createLiveMsg(
+            isLive,
+            begin_at,
+            serie_name,
             opponents,
             results,
             number_of_games,
@@ -89,4 +99,4 @@ const index: NextPage<IProps> = ({ match }) => {
   );
 };
 
-export default index;
+export default Live;

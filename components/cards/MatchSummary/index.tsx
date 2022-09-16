@@ -1,18 +1,18 @@
 import type { NextPage } from "next";
-import TeamLogo from "../../team-logo";
+import TeamLogo from "../../TeamLogo";
 import { resultValidator } from "@utils/team.validate";
 import { ETeamComponentMode, ESection } from "@constants/enums";
-import { TMatch, TStats } from "types/api";
+import { TMatch } from "types/api";
 import { IHandleSelection } from "@interfaces/section.props";
 import InformationOutlineIcon from "mdi-react/InformationOutlineIcon";
-import styles from "./match-summary.module.scss";
+import styles from "./MatchSummary.module.scss";
 
 interface IProps extends IHandleSelection {
   last_match: TMatch;
   upcoming_match: TMatch;
 }
 
-const index: NextPage<IProps> = ({
+const MatchSummary: NextPage<IProps> = ({
   last_match,
   upcoming_match,
   handleSection,
@@ -98,4 +98,4 @@ const index: NextPage<IProps> = ({
   </div>
 );
 
-export default index;
+export default MatchSummary;

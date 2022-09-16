@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import Head from "next/head";
 
-const index: NextPage = () => {
+const HeadConfig: NextPage = () => {
   return (
     <Head>
       <title>Next Match.ez</title>
@@ -9,4 +9,4 @@ const index: NextPage = () => {
   );
 };
 
-export default index;
+export default HeadConfig;

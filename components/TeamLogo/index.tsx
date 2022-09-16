@@ -2,7 +2,7 @@ import type { NextPage } from "next";
 import Image from "next/image";
 import { logoValidator, nameValidator } from "@utils/team.validate";
 import { ETeamComponentMode } from "@constants/enums";
-import styles from "./team-logo.module.scss";
+import styles from "./TeamLogo.module.scss";
 
 const COMPONENT_MODE = {
   [ETeamComponentMode.ROW]: styles.containerRow,
@@ -16,7 +16,7 @@ interface IProps {
   big?: boolean;
 }
 
-const index: NextPage<IProps> = ({
+const TeamLogo: NextPage<IProps> = ({
   componentMode,
   teamLogo,
   teamName,
@@ -30,6 +30,7 @@ const index: NextPage<IProps> = ({
       objectFit="contain"
       loading="lazy"
       draggable="false"
+      alt={`${teamName} logo`}
     />
 
     <p className={`${styles.teamName} ${big && styles.bigLetters}`}>
@@ -38,4 +39,4 @@ const index: NextPage<IProps> = ({
   </div>
 );
 
-export default index;
+export default TeamLogo;

@@ -95,6 +95,7 @@
         }
 
         .space {
+          margin: 0.1rem;
           @include responsives.MOBILE {
             display: none;
           }

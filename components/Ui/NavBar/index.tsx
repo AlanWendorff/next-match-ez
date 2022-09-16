@@ -2,24 +2,24 @@ import type { NextPage } from "next";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import activeClassName from "./navigation.validate";
+import { ALL_MATCHES, MAIN_PAGE } from "@constants/routes";
 import CardsIcon from "mdi-react/CardsIcon";
 import AccountGroupIcon from "mdi-react/AccountGroupIcon";
-import styles from "./nav-bar.module.scss";
+import styles from "./NavBar.module.scss";
 
-const index: NextPage = () => {
+const NavBar: NextPage = () => {
   const { pathname } = useRouter();
-  console.log(activeClassName(pathname, "/asd"));
 
   return (
     <div className={styles.container}>
       <div className={styles.navBar}>
-        <Link href={"/"}>
-          <div className={activeClassName(pathname, "/")}>
+        <Link href={MAIN_PAGE}>
+          <div className={activeClassName(pathname, MAIN_PAGE)}>
             <AccountGroupIcon size={"40px"} />
           </div>
         </Link>
-        <Link href={"/all-matches"}>
-          <div className={activeClassName(pathname, "/all-matches")}>
+        <Link href={ALL_MATCHES}>
+          <div className={activeClassName(pathname, ALL_MATCHES)}>
             <CardsIcon size={"40px"} />
           </div>
         </Link>
@@ -28,4 +28,4 @@ const index: NextPage = () => {
   );
 };
 
-export default index;
+export default NavBar;

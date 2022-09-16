@@ -1,7 +1,7 @@
 import type { NextPage } from "next";
 import { TStats } from "types/api";
 import TLastFiveStyle from "types/stats";
-import styles from "./stats.module.scss";
+import styles from "./Stats.module.scss";
 
 const lastFiveStyle: TLastFiveStyle = {
   W: styles.winnedGame,
@@ -12,7 +12,7 @@ interface IProps {
   team_stats: TStats;
 }
 
-const index: NextPage<IProps> = ({ team_stats }) => (
+const Stats: NextPage<IProps> = ({ team_stats }) => (
   <div className={styles.container}>
     <section className={styles.generalStats}>
       <p>
@@ -32,4 +32,4 @@ const index: NextPage<IProps> = ({ team_stats }) => (
   </div>
 );
 
-export default index;
+export default Stats;

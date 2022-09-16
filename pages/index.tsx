@@ -1,14 +1,15 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import getTeamMatches from "@api/getters/team-matches/getTeamMatches";
-import TopBar from "@ui/top-bar";
-import HistoricMatches from "@sections/historic-matches";
-import TeamSummary from "@sections/team-summary";
-import UpcomingMatches from "@sections/upcoming-matches";
+import TopBar from "@components/Ui/TopBar";
+import HistoricMatchesMapper from "@components/Sections/HistoricMatchesMapper";
+import TeamSummary from "@components/Sections/TeamSummary";
+import UpcomingMatchesMapper from "@components/Sections/UpcomingMatchesMapper";
 import { ESection } from "@constants/enums";
+import { REVALIDATE_TIME } from "@constants/config";
 import { TSections } from "types/sections";
 import { TMatch, TStats } from "types/api";
-import styles from "./index.module.scss";
+import styles from "./MainFrame.module.scss";
 
 interface IProps {
   historic_matches: TMatch[];
@@ -16,7 +17,7 @@ interface IProps {
   team_stats: TStats;
 }
 
-const index: NextPage<IProps> = ({
+const MainFrame: NextPage<IProps> = ({
   historic_matches,
   upcoming_matches,
   team_stats,
@@ -36,9 +37,11 @@ const index: NextPage<IProps> = ({
         handleSection={handleSection}
       />
     ),
-    [ESection.UPCOMING]: <UpcomingMatches upcoming_match={upcoming_matches} />,
+    [ESection.UPCOMING]: (
+      <UpcomingMatchesMapper upcoming_match={upcoming_matches} />
+    ),
     [ESection.HISTORIC]: (
-      <HistoricMatches historic_matches={historic_matches} />
+      <HistoricMatchesMapper historic_matches={historic_matches} />
     ),
   };
 
@@ -51,12 +54,14 @@ const index: NextPage<IProps> = ({
 };
 
 export const getStaticProps = async () => {
+  console.log("re-generating");
+
   const matches = await getTeamMatches();
 
   return {
     props: matches,
-    revalidate: 1000,
+    revalidate: REVALIDATE_TIME,
   };
 };
 
-export default index;
+export default MainFrame;

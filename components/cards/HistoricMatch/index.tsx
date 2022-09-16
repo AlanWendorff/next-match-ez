@@ -1,8 +1,8 @@
 import { useState } from "react";
 import type { NextPage } from "next";
 import Moment from "moment";
-import TeamLogo from "../../team-logo";
-import SocialShare from "../../ui/social-share";
+import TeamLogo from "../../TeamLogo";
+import SocialShare from "../../Ui/SocialShare";
 import { createHistoricMsg } from "@utils/social-share";
 import { isMatchFinal } from "@utils/tournament.validate";
 import { resultValidator } from "@utils/team.validate";
@@ -12,9 +12,9 @@ import ChevronDownIcon from "mdi-react/ChevronDownIcon";
 import ChevronUpIcon from "mdi-react/ChevronUpIcon";
 import TrophyOutlineIcon from "mdi-react/TrophyOutlineIcon";
 import CalendarClockIcon from "mdi-react/CalendarClockIcon";
-import styles from "./historic-match.module.scss";
+import styles from "./HistoricMatch.module.scss";
 
-const index: NextPage<IProps> = ({ match }) => {
+const HistoricMatch: NextPage<IProps> = ({ match }) => {
   const [detailState, setDetailState] = useState(false);
   const {
     opponents,
@@ -90,4 +90,4 @@ const index: NextPage<IProps> = ({ match }) => {
   );
 };
 
-export default index;
+export default HistoricMatch;
