@@ -25,6 +25,7 @@ const MatchSummary: NextPage<IProps> = ({
           componentMode={ETeamComponentMode.COLUMN}
           teamLogo={`${last_match.opponents[0].image_url}`}
           teamName={last_match.opponents[0].name}
+          teamId={last_match.opponents[0].id}
         />
 
         <p
@@ -51,6 +52,7 @@ const MatchSummary: NextPage<IProps> = ({
           componentMode={ETeamComponentMode.COLUMN}
           teamLogo={`${last_match.opponents[1].image_url}`}
           teamName={last_match.opponents[1].name}
+          teamId={last_match.opponents[1].id}
         />
       </div>
       <button
@@ -73,12 +75,14 @@ const MatchSummary: NextPage<IProps> = ({
               componentMode={ETeamComponentMode.COLUMN}
               teamLogo={`${upcoming_match.opponents[0].image_url}`}
               teamName={upcoming_match.opponents[0].name}
+              teamId={upcoming_match.opponents[0].id}
             />
             <p>vs</p>
             <TeamLogo
               componentMode={ETeamComponentMode.COLUMN}
               teamLogo={`${upcoming_match.opponents[1].image_url}`}
               teamName={upcoming_match.opponents[1].name}
+              teamId={upcoming_match.opponents[1].id}
             />
           </div>
           <button

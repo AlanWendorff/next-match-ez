@@ -35,6 +35,7 @@ const Live: NextPage<IProps> = ({ match }) => {
             componentMode={ETeamComponentMode.ROW}
             teamLogo={`${opponents[0].image_url}`}
             teamName={opponents[0].name}
+            teamId={opponents[0].id}
           />
           {isLive && (
             <p className={resultValidator(results[0].score, results[1].score)}>
@@ -47,6 +48,7 @@ const Live: NextPage<IProps> = ({ match }) => {
             componentMode={ETeamComponentMode.ROW}
             teamLogo={`${opponents[1].image_url}`}
             teamName={opponents[1].name}
+            teamId={opponents[1].id}
           />
           {isLive && (
             <p className={resultValidator(results[1].score, results[0].score)}>

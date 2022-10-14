@@ -31,6 +31,7 @@ const Upcoming: NextPage<IProps> = ({ match }) => {
           componentMode={ETeamComponentMode.COLUMN}
           teamLogo={`${opponents[EXACT_INDEX].image_url}`}
           teamName={opponents[EXACT_INDEX].name}
+          teamId={opponents[EXACT_INDEX].id}
           big
         />
       </div>

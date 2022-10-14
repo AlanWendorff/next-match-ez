@@ -1,9 +1,9 @@
-import { TEAM_ID, API_KEY } from "@constants/api";
+import { API_KEY } from "@constants/api";
 import { makeStatistics } from "../../utils/scripts/helper";
 import { matchesMapper } from "../../utils/scripts/matches.mapper";
 import IMatchMapped from "../../utils/interfaces/match";
 
-const getTeamMatches = async () => {
+const getTeamMatches = async (TEAM_ID: string) => {
   const HISTORIC_MATCHES = await fetch(
     `https://api.pandascore.co/csgo/matches/past?filter[opponent_id]=${TEAM_ID}&filter[finished]=true&token=${API_KEY}`
   );

@@ -34,7 +34,6 @@ export const matchesMapper = (MATCHES: IMatchPandascore[]) =>
       map_playing: results[0] && results[1] ? whatMapArePlaying(results) : null,
       opponents: [
         opponentValidate(opponents[0]),
-
         opponentValidate(opponents[1]),
       ],
       results: results,
